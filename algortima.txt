@@ -1,0 +1,26 @@
+[Start]
+   ↓
+[İndir: tunadromd.zip] → [Çıkart: tunadromd_data/]
+   ↓
+[Bul & Oku CSV] → df
+   ↓
+[Temizle] : dropna(Label)
+   ↓
+[Ayrıştır] : X = features, y = Label
+   ↓
+[Split] train/test (test_size=0.2, stratify=y, random_state=42)
+   ↓
+[Pipeline]
+   ├─ StandardScaler()
+   ├─ SelectKBest(f_classif, k=10)
+   └─ RandomForestClassifier(random_state=42)
+   ↓
+[GridSearchCV over param_grid (cv=3)]
+   ↓
+[Best model ile test sette predict]
+   ↓
+[Değerlendirme] : classification_report, confusion_matrix
+   ↓
+[Kaydet] joblib.dump(best_model)
+   ↓
+[End]
