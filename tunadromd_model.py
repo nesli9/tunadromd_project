@@ -142,4 +142,3 @@ print(f"\n💾 Model kaydedildi: {save_path}")
 
 print("\n🎉 İşlem tamamlandı. Model başarıyla eğitildi!")
 
-#deneme bir ki
