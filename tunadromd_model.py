@@ -59,9 +59,9 @@ print("✔ Veri başarıyla yüklendi.")
 print("\nVeri Boyutu:", df.shape)
 print(df.head())
 
-# -------------------------------------------------
+# -----------------------------------------------
 # 3) HEDEF VE ÖZELLİKLERİ AYIR
-# -------------------------------------------------
+# -----------------------------------------------
 
 target_col = "Label"  # dataset'teki hedef
 
@@ -120,9 +120,9 @@ print("✔ En iyi parametreler:", grid.best_params_)
 
 best_model = grid.best_estimator_
 
-# -------------------------------------------------
+# -----------------------------------------------
 # 7) TEST SETİNDE DEĞERLENDİRME
-# -------------------------------------------------
+# -----------------------------------------------
 
 print("\n📊 Test Set Performansı:")
 
@@ -131,9 +131,9 @@ y_pred = best_model.predict(X_test)
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
 print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
 
-# -------------------------------------------------
+# -----------------------------------------------
 # 8) MODELİ KAYDET
-# -------------------------------------------------
+# -----------------------------------------------
 
 save_path = "TUNADROMD_RF_Model.pkl"
 joblib.dump(best_model, save_path)
