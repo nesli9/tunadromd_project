@@ -88,8 +88,8 @@ print("\n✔ Train/Test bölündü.")
 
 pipeline = Pipeline([
     ("scaler", StandardScaler()),
-    ("select", SelectKBest(score_func=f_classif, k=10)),  # İlk 10 özelliği seç
-    ("model", RandomForestClassifier(random_state=42))
+    ("select", SelectKBest(score_func=f_classif, k=10)),  # her feature’ın hedef değişkenle ilişkisine göre sıralama yapılıp, en yüksek skora sahip ilk 10 özellik sabit olarak seçilir.
+    ("model", RandomForestClassifier(random_state=42)) 
 ])
 
 # -------------------------------------------------
@@ -98,17 +98,18 @@ pipeline = Pipeline([
 
 print("\n🔍 Hyperparameter Search başlıyor...")
 
-param_grid = {
-    "model__n_estimators": [100, 300],
-    "model__max_depth": [None, 10, 20],
-    "model__min_samples_split": [2, 5]
+param_grid = {                           # en iyi performansın hangi bölgeye yakın olduğunu bulmak için
+    "model__n_estimators": [100, 300],   # 2 değer
+    "model__max_depth": [None, 10, 20],  # 3 değer
+    "model__min_samples_split": [2, 5]   # 2 değer
 }
+#Kombinasyon sayısı = (değer1 sayısı) × (değer2 sayısı) × (değer3 sayısı) == 2*3*2 = 12 farklı model eder
 
 grid = GridSearchCV(
     pipeline,
     param_grid,
-    cv=3,
-    scoring="accuracy",
+    cv=3,                    # veri 3 parçaya bölünür , her kombinasyon 3 kez farklı train/test ile denenir
+    scoring="accuracy",      # modelleri doğruluk skoruna göre değerlendirmek için
     verbose=1,
     n_jobs=-1
 )
